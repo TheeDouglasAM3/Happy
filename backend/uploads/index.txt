@@ -1,0 +1,1 @@
+Arquivo criado para poder dar commit na pasta de uploads
