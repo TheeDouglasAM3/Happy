@@ -104,7 +104,7 @@ export default function Orphanage() {
               </div>
               
               {
-                orphanage.opening_hours 
+                orphanage.open_on_weekends
                 ? (
                   <div className="open-on-weekends">
                     <FiInfo size={32} color="#39CC83" />
