@@ -18,8 +18,8 @@ export default function SelectMapPosition() {
     <View style={styles.container}>
       <MapView 
         initialRegion={{
-          latitude: -27.2092052,
-          longitude: -49.6401092,
+          latitude: -23.4494709,
+          longitude: -46.5286301,
           latitudeDelta: 0.008,
           longitudeDelta: 0.008,
         }}
@@ -27,7 +27,10 @@ export default function SelectMapPosition() {
       >
         <Marker 
           icon={mapMarkerImg}
-          coordinate={{ latitude: -27.2092052, longitude: -49.6401092 }}
+          coordinate={{ 
+            latitude: -23.4494709,
+            longitude: -46.5286301 
+          }}
         />
       </MapView>
 
