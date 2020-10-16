@@ -60,7 +60,6 @@ export default function OrphanagesMap() {
                 latitude: orphanage.latitude,
                 longitude: orphanage.longitude
               }}
-              
             >
               <Callout 
                 tooltip={true}
@@ -76,7 +75,7 @@ export default function OrphanagesMap() {
       </MapView>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>2 orfanatos encontrados</Text>
+        <Text style={styles.footerText}>{orphanages.length} orfanatos encontrados</Text>
         <RectButton 
           style={styles.createOrphanageButton}
           onPress={handleNavigateToCreateOrphanage}
