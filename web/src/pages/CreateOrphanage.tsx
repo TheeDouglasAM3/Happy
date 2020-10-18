@@ -22,6 +22,9 @@ export default function CreateOrphanage() {
   const [open_on_weekends, setOpenOnWeekends] = useState(true)
   const [images, setImages] = useState<File[]>([])
   const [previewImages, setPreviewImages] = useState<string[]>([])
+  const [whatsapp, setWhatsapp] = useState('')
+  const [facebook, setFacebook] = useState('')
+  const [website, setWebsite] = useState('')
 
   function handleMapClick(event: LeafletMouseEvent){
     const { lat, lng } = event.latlng
@@ -59,6 +62,9 @@ export default function CreateOrphanage() {
     data.append('instructions', instructions)
     data.append('opening_hours', opening_hours)
     data.append('open_on_weekends', String(open_on_weekends))
+    data.append('whatsapp', whatsapp)
+    data.append('facebook', facebook)
+    data.append('website', website)
     
     images.forEach(image => {
       data.append('images', image)
@@ -104,26 +110,28 @@ export default function CreateOrphanage() {
             </Map>
 
             <div className="input-block">
-              <label htmlFor="name">Nome</label>
+              <label htmlFor="name">Nome*</label>
               <input 
                 id="name" 
                 value={name} 
                 onChange={event => setName(event.target.value)} 
+                required
               />
             </div>
 
             <div className="input-block">
-              <label htmlFor="about">Sobre <span>Máximo de 300 caracteres</span></label>
+              <label htmlFor="about">Sobre* <span>Máximo de 300 caracteres</span></label>
               <textarea 
                 id="about" 
                 maxLength={300} 
                 value={about} 
                 onChange={event => setAbout(event.target.value)}
+                required
               />
             </div>
 
             <div className="input-block">
-              <label htmlFor="images">Fotos</label>
+              <label htmlFor="images">Fotos*</label>
 
               <div className="images-container">
                 {previewImages.map(image => {
@@ -150,25 +158,27 @@ export default function CreateOrphanage() {
             <legend>Visitação</legend>
 
             <div className="input-block">
-              <label htmlFor="instructions">Instruções</label>
+              <label htmlFor="instructions">Instruções*</label>
               <textarea 
                 id="instructions" 
                 value={instructions} 
                 onChange={event => setInstructions(event.target.value)}
+                required
               />
             </div>
 
             <div className="input-block">
-              <label htmlFor="opening_hours">Horário de funcionamento</label>
+              <label htmlFor="opening_hours">Horário de funcionamento*</label>
               <input 
                 id="opening_hours" 
                 value={opening_hours} 
                 onChange={event => setOpeningHours(event.target.value)}
+                required
               />
             </div>
 
             <div className="input-block">
-              <label htmlFor="open_on_weekends">Atende fim de semana</label>
+              <label htmlFor="open_on_weekends">Atende fim de semana*</label>
 
               <div className="button-select">
                 <button 
@@ -189,6 +199,38 @@ export default function CreateOrphanage() {
             </div>
           </fieldset>
 
+          <fieldset>
+            <legend>Contatos</legend>
+
+            <div className="input-block">
+              <label htmlFor="whatsapp">Whatsapp*</label>
+              <input 
+                id="whatsapp" 
+                value={whatsapp} 
+                onChange={event => setWhatsapp(event.target.value)}
+                required
+              />
+            </div>
+
+            <div className="input-block">
+              <label htmlFor="facebook">Facebook</label>
+              <input 
+                id="facebook" 
+                value={facebook} 
+                onChange={event => setFacebook(event.target.value)}
+              />
+            </div>
+
+            <div className="input-block">
+              <label htmlFor="website">Site do orfanato</label>
+              <input 
+                id="website" 
+                value={website} 
+                onChange={event => setWebsite(event.target.value)}
+              />
+            </div>
+          </fieldset>
+
           <button className="confirm-button" type="submit">
             Confirmar
           </button>
@@ -197,5 +239,3 @@ export default function CreateOrphanage() {
     </div>
   );
 }
-
-// return `https://a.tile.openstreetmap.org/${z}/${x}/${y}.png`;
