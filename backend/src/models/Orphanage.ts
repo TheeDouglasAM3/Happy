@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, OneToOne } from 'typeorm'
 import Image from './Image'
+import Contact from './Contact'
 
 @Entity('orphanages')
 export default class Orphanage {
@@ -32,4 +33,9 @@ export default class Orphanage {
   })
   @JoinColumn({ name: 'orphanage_id' })
   images: Image[]
+
+  @OneToOne(() => Contact, contact => contact.orphanage, {
+    cascade: ['insert', 'update']
+  })
+  contact: Contact
 }

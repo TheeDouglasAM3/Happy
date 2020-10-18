@@ -37,7 +37,10 @@ export default {
       about,
       instructions,
       opening_hours,
-      open_on_weekends
+      open_on_weekends,
+      whatsapp,
+      facebook,
+      website
     } = request.body
   
     const orphanagesRepository = getRepository(Orphanage)
@@ -47,6 +50,12 @@ export default {
       return { path: image.filename }
     })
 
+    const contact = {
+      whatsapp,
+      facebook,
+      website
+    }
+  
     const data = {
       name,
       latitude,
@@ -55,8 +64,11 @@ export default {
       instructions,
       opening_hours,
       open_on_weekends: open_on_weekends === 'true',
-      images
+      images,
+      contact
     }
+
+    console.log(data)
 
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -70,13 +82,19 @@ export default {
         Yup.object().shape({
           path: Yup.string().required()
         })
-      )
+      ),
+      contact: Yup.object().shape({
+        whatsapp: Yup.string().required(),
+        facebook: Yup.string().notRequired(),
+        website: Yup.string().notRequired()
+      })
     })
 
     await schema.validate(data, {
       abortEarly: false
     })
   
+    
     const orphanage = orphanagesRepository.create(data)
   
     await orphanagesRepository.save(orphanage)
