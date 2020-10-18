@@ -9,7 +9,7 @@ export default {
     const orphanagesRepository = getRepository(Orphanage)
 
     const orphanages = await orphanagesRepository.find({
-      relations: ['images']
+      relations: ['images', 'contact']
     })
 
     return response.json(orphanageView.renderMany(orphanages))
@@ -21,14 +21,13 @@ export default {
     const orphanagesRepository = getRepository(Orphanage)
 
     const orphanage = await orphanagesRepository.findOneOrFail(id, {
-      relations: ['images']
+      relations: ['images', 'contact']
     })
 
     return response.json(orphanageView.render(orphanage))
   },
 
   async create(request: Request, response: Response) {
-    //console.log(request.files)
 
     const {
       name,
