@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaFacebook, FaShare, FaWhatsapp } from "react-icons/fa";
 import { FiClock, FiInfo } from "react-icons/fi";
 import { Map, Marker, TileLayer } from "react-leaflet";
 import { useParams } from 'react-router-dom'
@@ -21,6 +21,11 @@ interface Orphanage {
     id: number
     url: string
   }>
+  contact: {
+    whatsapp?: string,
+    facebook?: string,
+    website?: string,
+  }
 }
 
 interface OrphanageParams {
@@ -34,6 +39,7 @@ export default function Orphanage() {
 
   useEffect(() => {
     api.get(`orphanages/${params.id}`).then(response => {
+      console.log(response.data)
       setOrphanage(response.data)
     })
   }, [params.id])
@@ -122,10 +128,47 @@ export default function Orphanage() {
               }
             </div>
 
-            {/* <button type="button" className="contact-button">
-              <FaWhatsapp size={20} color="#FFF" />
-              Entrar em contato
-            </button> */}
+            <a 
+              href={`https://api.whatsapp.com/send?phone=${orphanage.contact.whatsapp}&text=Gostaria%20de%20realizar%20uma%20visita.`} 
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button type="button" className="contact-whatsapp">
+                <FaWhatsapp size={20} color="#FFF" />
+                Entrar em contato por whatsapp
+              </button>
+            </a>
+            
+            {
+              orphanage.contact.facebook && (
+                <a 
+                  href={`${orphanage.contact.facebook}`} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button type="button" className="contact-facebook">
+                    <FaFacebook size={20} color="#FFF" />
+                    Acessar página do Facebook
+                  </button>
+                </a>
+              )
+            }
+
+            {
+              orphanage.contact.website && (
+                <a 
+                  href={`${orphanage.contact.website}`} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button type="button" className="contact-website">
+                    <FaShare size={20} color="#FFF" />
+                    Acessar o site do orfanato
+                  </button>
+                </a>
+              )
+            }
+
           </div>
         </div>
       </main>
