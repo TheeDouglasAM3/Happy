@@ -37,5 +37,5 @@ export default class Orphanage {
   @OneToOne(() => Contact, contact => contact.orphanage, {
     cascade: ['insert', 'update']
   })
-  contact: Contact
+  contact: Contact;
 }

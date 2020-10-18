@@ -15,7 +15,7 @@ export default class Contacts {
   @Column({ nullable: true })
   website: string
 
-  @OneToOne(() => Orphanage, orphanage => orphanage.contact)
+  @OneToOne(() => Orphanage)
   @JoinColumn({ name: 'orphanage_id'})
   orphanage: Orphanage
 }
