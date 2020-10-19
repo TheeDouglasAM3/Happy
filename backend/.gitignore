@@ -2,3 +2,4 @@ node_modules
 uploads/*.png
 uploads/*.jpeg
 uploads/*.jpg
+.env
