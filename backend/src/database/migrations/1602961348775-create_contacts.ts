@@ -20,16 +20,16 @@ export class createContacts1602961348775 implements MigrationInterface {
 				},
 				{
 					name: 'whatsapp',
-					type: 'string'
+					type: 'varchar'
 				},
 				{
 					name: 'facebook',
-					type: 'string',
+					type: 'varchar',
 					isNullable: true
 				},
 				{
 					name: 'website',
-					type: 'string',
+					type: 'varchar',
 					isNullable: true
 				}
 			],
