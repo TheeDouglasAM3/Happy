@@ -1,7 +1,7 @@
 # HappyGuarulhos
 
 <p align="center">
-   <img src="./.github/logo.png" alt="Happy" width="280"/>
+   <img src="./.github/logoHappy.png" alt="Happy" width="280"/>
 </p>
 
 <p align="center">	
